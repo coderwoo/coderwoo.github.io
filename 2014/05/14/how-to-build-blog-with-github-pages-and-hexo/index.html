@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用github pages和hexo搭建个人博客 | CoderWoo&#39;s Blog</title>
+  <meta name="author" content="CoderWoo">
+  
+  <meta name="description" content="本文详尽介绍了如何使用github pages和hexo搭建一个个人博客，包含域名的注册、DNS设置、github和hexo设置等的详细说明。希望本文能给有兴趣搭建个人博客的同学们提供帮助。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="使用github pages和hexo搭建个人博客"/>
+  <meta property="og:site_name" content="CoderWoo&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="CoderWoo&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">CoderWoo&#39;s Blog</a></h1>
+  <h2><a href="/">CARPE DIEM (to make merry while one can)</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">存档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-14T09:11:03.000Z"><a href="/2014/05/14/how-to-build-blog-with-github-pages-and-hexo/">5月 14 2014</a></time>
+      
+      
+  
+    <h1 class="title">使用github pages和hexo搭建个人博客</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>本文详尽介绍了如何使用github pages和hexo搭建一个个人博客，包含域名的注册、DNS设置、github和hexo设置等的详细说明。希望本文能给有兴趣搭建个人博客的同学们提供帮助。<br><a id="more"></a></p>
+<h1 id="为什么写博客">为什么写博客</h1>
+<hr>
+<p><a href="http://zhuanlan.zhihu.com/cnfeat/19743861" target="_blank">为什么你要写博客？</a><br><a href="http://www.zhihu.com/question/20982901" target="_blank">知乎上那么多人极力推崇读书，为什么不把上知乎的时间都用来读书？</a><br><img src="http://stephenslighthouse.com/wp-content/uploads/2010/02/learning_pyramid.jpg" alt="学习金字塔"></p>
+<blockquote>
+<p>想在知乎上查找一下此图片，结果立刻就看到这个：<a href="http://www.zhihu.com/question/23563270" target="_blank">如何正确看待学习金字塔？</a></p>
+</blockquote>
+<p>我还是很赞同曹洋的回答的，将自己学习到的东西写出来、传递给别人，这样才能够巩固自己学习到的内容。</p>
+<h1 id="为什么要搭建自己的博客">为什么要搭建自己的博客</h1>
+<hr>
+<p>传统的博客如CSDN、sina等博客系统能够提供的DIY功能都太少了，我十分喜欢使用Markdown进行写作，但是这些博客对于Markdown的支持都不是太好。搭建自己独立的博客可以尽情的折腾。</p>
+<h1 id="为什么使用Github_Pages_和_Hexo">为什么使用Github Pages 和 Hexo</h1>
+<hr>
+<p>很早就听过WordPress的大名，所以最开始是想用WordPress搞的。但是，折腾了两三天后终于决定放弃。我需要的是一个可以在本地编辑，然后上传到博客网站上去的系统，但是WordPress无法满足我的要求。<br>使用Hexo可以很方便的在本地进行编辑，然后使用hexo的server指令在本地预览，deploy命令上传到网站上，十分方便。</p>
+<h1 id="安装git与Node-js">安装git与Node.js</h1>
+<hr>
+<ul>
+<li><a href="http://nodejs.org" target="_blank">Node.js</a></li>
+<li><a href="http://git-scm.com/" target="_blank">Git</a> ：在安装git的过程中，会提示是否使用unix tools，建议选择此项</li>
+</ul>
+<h1 id="注册Github账号">注册Github账号</h1>
+<hr>
+<p>参考<a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank">hexo系列教程：（二）搭建hexo博客</a></p>
+<h1 id="配置SSH_Keys">配置SSH Keys</h1>
+<hr>
+<p>见<a href="https://help.github.com/articles/generating-ssh-keys" target="_blank">Generating SSH Keys</a></p>
+<h2 id="生成SSH_Key">生成SSH Key</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>$ ssh<span class="attribute">-keygen</span> <span class="attribute">-t</span> rsa <span class="attribute">-C</span> <span class="string">"邮件地址@youremail.com"</span>
+Generating <span class="keyword">public</span>/<span class="keyword">private</span> rsa key <span class="built_in">pair</span><span class="built_in">.</span>
+Enter file <span class="keyword">in</span> which <span class="keyword">to</span> save the key (/Users/your_user_directory<span class="subst">/</span><span class="built_in">.</span>ssh/id_rsa):<span class="subst">&lt;</span>回车就好<span class="subst">&gt;</span>
+Enter passphrase (empty for no passphrase):<span class="subst">&lt;</span>输入密码<span class="subst">&gt;</span>（密码不会以‘<span class="subst">*</span>’号显示在屏幕中）
+Enter same passphrase again:<span class="subst">&lt;</span>再次输入密码<span class="subst">&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>这里的密码会在提交项目时用到，也可以不使用，见<a href="https://help.github.com/articles/working-with-ssh-key-passphrases" target="_blank">Working with SSH key passphrases</a></p>
+<h2 id="添加SSH_Key到Github">添加SSH Key到Github</h2>
+<p>1, 打开C:\Users\<User Name>.ssh\id_rsa.pub文件，并复制其中的内容<br>2, 登陆github系统。点击右上角的 Account Settings—-&gt;SSH Public keys —-&gt; add another public keys<br>3, 把你本地生成的密钥复制到里面（key文本框中）， 点击 add key 就ok了</p>
+<h2 id="测试">测试</h2>
+<p>输入下面的指令测试是否可以连接到Github上：<code>$ssh -T git@github.com</code> 正常情况下会提示<code>Are you sure you want to continue connecting (yes/no)?</code>，输入yes即可。然后会看到：<code>Hi &lt;username&gt;! You&#39;&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></p>
+<h2 id="设置用户信息">设置用户信息</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>$ git config --<span class="keyword">global</span> user.name <span class="string">"coderwoo"</span><span class="comment">//用户名</span>
+$ git config --<span class="keyword">global</span> user.email  <span class="string">"coderwoo@gmail.com"</span><span class="comment">//填写自己的邮箱</span>
+</pre></td></tr></table></figure>
+
+
+<h1 id="使用Github_Pages建立博客">使用Github Pages建立博客</h1>
+<hr>
+<h2 id="GitHub_Pages是什么">GitHub Pages是什么</h2>
+<p>GitHub Pages是GitHub提供的一个免费的内容发布系统。分为两种：</p>
+<ol>
+<li>以用户名开头的类似<code>&lt;username&gt;.github.io</code>这样的，相当于个人或组织的发布页。每个用户可以创建一个，我们使用这个来建立个人博客</li>
+<li>依附于具体项目的pages。</li>
+</ol>
+<h2 id="创建个人的Pages">创建个人的Pages</h2>
+<p>在GitHub上新建一个Repository，项目的名称必须为<code>&lt;username&gt;.github.io</code></p>
+<h1 id="建立Hexo博客">建立Hexo博客</h1>
+<hr>
+<h2 id="安装hexo">安装hexo</h2>
+<p>注：必须安装node.js<br>执行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>npm <span class="keyword">install</span> -g hexo
+</pre></td></tr></table></figure>
+
+
+<h2 id="创建hexo文件夹">创建hexo文件夹</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="keyword">cd</span> &lt;your blog <span class="keyword">dir</span>&gt;
+mkdir hexo
+<span class="keyword">cd</span> hexo
+hexo init
+</pre></td></tr></table></figure>
+
+
+<p>注：执行hexo命令必须在执行过hexo init的目录下</p>
+<h2 id="本地预览hexo博客">本地预览hexo博客</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="built_in">cd</span> &lt;your blog dir&gt;/hexo
+hexo generate 	<span class="comment"># 生成静态文件</span>
+hexo server		<span class="comment"># 建立本地server</span>
+</pre></td></tr></table></figure>
+
+
+<p>执行上边的命令后就可以额在浏览器中输入<code>localhost:4000</code>预览</p>
+<h2 id="部署到GitHub">部署到GitHub</h2>
+<p>编辑hexo文件夹下的<code>_config.yml</code>文件：（注意替换成自己的用户名）</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="preprocessor"># Deployment</span>
+<span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span>
+<span class="label">deploy:</span>
+  type: github
+  repository: git@github<span class="preprocessor">.com</span>:coderwoo/coderwoo<span class="preprocessor">.github</span><span class="preprocessor">.io</span><span class="preprocessor">.git</span>
+  branch: master
+</pre></td></tr></table></figure>
+
+
+<p>然后执行下面的指令完成部署：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>hexo <span class="keyword">generate</span>
+hexo deploy
+</pre></td></tr></table></figure>
+
+
+<p>现在访问coderwoo.github.io就可以看到你的博客了，如果出现404错误，请等待10分钟左右再次访问。</p>
+<h2 id="hexo指令">hexo指令</h2>
+<p>hexo clean # 清除生成的静态文件（在source目录下修改CNAME文件，generate不会更新，需要先执行此命令）（关于CNAME文件，稍后在配置域名部分会进行介绍）<br>hexo g == hexo generate<br>hexo d == hexo deploy<br>hexo s == hexo server<br>hexo n == hexo new<br>hexo d -g == hexo generate &amp;&amp; hexo deploy<br>hexo s -g == hexo generate &amp;&amp; hexo server</p>
+<h2 id="安装hexo主题">安装hexo主题</h2>
+<p>执行下面的指令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git clone <span class="tag">&lt;<span class="title">repository</span>&gt;</span> themes/<span class="tag">&lt;<span class="title">theme-name</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>修改_config.yml文件中的theme字段为theme-name，见<a href="https://github.com/tommy351/hexo/wiki/Themes" target="_blank">Hexo Themes</a><br>我们这里使用light主题（默认主题没有评论功能）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>git <span class="keyword">clone</span> git:<span class="comment">//github.com/tommy351/hexo-theme-light.git themes/light</span>
+</pre></td></tr></table></figure>
+
+
+<h2 id="添加“多说”评论">添加“多说”评论</h2>
+<p>1，注册<a href="http://duoshuo.com/" target="_blank">多说</a>账号，并获取通用代码<br>2，将其粘贴到’themes\light\layout_partial\comment.ejs’中：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="vbscript">&lt;% <span class="keyword">if</span> (page.comments){ %&gt;</span>
+<span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comment"</span>&gt;</span>
+<span class="comment">&lt;!-- 多说评论框 start --&gt;</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"&lt;%- config.root %&gt;&lt;%- item.path%&gt;"</span> <span class="attribute">data-title</span>=<span class="value">"&lt;%- item.title %&gt;"</span> <span class="attribute">data-url</span>=<span class="value">"&lt;%- item.permalink %&gt;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="comment">&lt;!-- 多说评论框 end --&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+<span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">"coderwoo"</span>};
+	(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+		<span class="keyword">var</span> ds = document.createElement(<span class="string">'script'</span>);
+		ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;
+		ds.src = (document.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;
+		ds.charset = <span class="string">'UTF-8'</span>;
+		(document.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] 
+		 || document.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);
+	})();
+	</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span>
+<span class="tag">&lt;/<span class="title">section</span>&gt;</span>
+<span class="vbscript">&lt;% } %&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<h2 id="删除默认的分享代码">删除默认的分享代码</h2>
+<p>因为多说已经提供了分享功能，所以我们可以将默认的分享删掉：删除<code>themes/light/layout/_partial/article.ejs</code>中的<code>&lt;%-partial(&#39;post/share&#39;)%&gt;</code></p>
+<h2 id="发布新文章">发布新文章</h2>
+<p>见<a href="http://hexo.io/docs/writing.html" target="_blank">Hexo Writing</a></p>
+<h1 id="一些优化">一些优化</h1>
+<hr>
+<h2 id="添加环境变量">添加环境变量</h2>
+<p>建议添加以下两个环境变量：</p>
+<ul>
+<li>BLOG: 指向你执行hexo init的文件夹，我的为<code>E:\Blog\hexo</code></li>
+<li>POST: 已发布的文章所在目录，我的为<code>%BLOG%\source\_posts</code><br>这样就可以在vim中使用<code>:edit %POST%/file-name.md</code>编辑文章。</li>
+</ul>
+<h2 id="创建文章">创建文章</h2>
+<p>hexo创建文章时必须在博客目录下执行hexo new指令，我们可以添加批处理或者shell脚本进行处理：<br>cmd脚本：（我对批处理不是很熟，这是通过百度凑出来的代码，文件名blog.cmd，放着<code>c:\windows</code>目录下）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre><span class="variable">@echo</span> off
+set predir=<span class="variable">%CD</span>%
+pushd <span class="variable">%BLOG</span>%
+echo <span class="string">"Current WordDir :"</span> <span class="variable">%CD</span>%
+<span class="keyword">if</span> NOT <span class="string">"<span class="variable">%3</span>"</span> == <span class="string">""</span> <span class="keyword">goto</span> threeparams
+<span class="keyword">if</span> NOT <span class="string">"<span class="variable">%2</span>"</span> == <span class="string">""</span> <span class="keyword">goto</span> twoparams
+<span class="keyword">if</span> NOT <span class="string">"<span class="variable">%1</span>"</span> == <span class="string">""</span> <span class="keyword">goto</span> oneparams
+<span class="keyword">goto</span> noparams
+:threeparams
+	hexo <span class="variable">%1</span> <span class="variable">%2</span> <span class="variable">%3</span>
+	<span class="keyword">goto</span> end
+:twoparams
+	hexo <span class="variable">%1</span> <span class="variable">%2</span>
+	<span class="keyword">goto</span> end
+:oneparams
+	hexo <span class="variable">%1</span>
+	<span class="keyword">goto</span> end
+:noparams
+:end
+	pushd <span class="variable">%predir</span>%
+	echo <span class="string">"DONE"</span>
+</pre></td></tr></table></figure>
+
+
+<p>shell脚本：（文件名blog，无后缀，放在<code>Program files\git\cmd\</code>目录下）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="built_in">cd</span> <span class="variable">$BLOG</span>
+<span class="built_in">echo</span> <span class="string">"Word Dir: "</span> <span class="variable">${PWD}</span>
+<span class="keyword">if</span> [ <span class="variable">$#</span> == <span class="number">3</span> ]; <span class="keyword">then</span>
+	hexo <span class="string">"<span class="variable">$1</span>"</span> <span class="string">"<span class="variable">$2</span>"</span> <span class="string">"<span class="variable">$3</span>"</span>
+<span class="keyword">elif</span> [ <span class="variable">$#</span> == <span class="number">2</span> ]; <span class="keyword">then</span>
+	hexo <span class="string">"<span class="variable">$1</span>"</span> <span class="string">"<span class="variable">$2</span>"</span>
+<span class="keyword">elif</span> [ <span class="variable">$#</span> == <span class="number">1</span> ]; <span class="keyword">then</span>
+	hexo <span class="string">"<span class="variable">$1</span>"</span>
+<span class="keyword">fi</span>
+<span class="built_in">echo</span> <span class="string">"DONE"</span>
+</pre></td></tr></table></figure>
+
+
+<p>这样就可以在git bash中使用blog命令添加文章</p>
+<h1 id="绑定独立域名">绑定独立域名</h1>
+<hr>
+<h2 id="注册域名">注册域名</h2>
+<p>域名是问了党姐之后在<a href="http://www.cndns.com" target="_blank">cndns</a>上购买的,￥55/年</p>
+<h2 id="DNS解析">DNS解析</h2>
+<p>在cndns上修改DNS为<code>f1g1ns1.dnspod.net</code>,<code>f1g1ns2.dnspod.net</code><br>注册dnspod账号，添加一条CNAME记录，主机记录为@，记录值为<code>&lt;username&gt;.github.io.</code></p>
+<h2 id="添加CNMAE文件">添加CNMAE文件</h2>
+<p>在source目录下添加一个CNMAE文件，内容为<code>&lt;your domain&gt;.com</code>。执行<code>hexo d -g</code>命令进行部署。等待几分钟后，访问<code>&lt;your domain&gt;.com</code>应该就可以访问你的博客了。</p>
+<h1 id="参考">参考</h1>
+<hr>
+<p>[1] <a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a> “如何搭建一个独立博客——简明Github Pages与Hexo教程”<br>[2] <a href="http://yangjian.me/workspace/building-blog-with-hexo/" target="_blank">http://yangjian.me/workspace/building-blog-with-hexo/</a> “使用hexo搭建博客”<br>[3] <a href="http://zipperary.com/2013/05/27/domain-name-and-dns/" target="_blank">http://zipperary.com/2013/05/27/domain-name-and-dns/</a> “购买域名、设置DNS”<br>[4] <a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank">http://zipperary.com/2013/05/28/hexo-guide-2/</a> “hexo系列教程：（二）搭建hexo博客”<br>[5] <a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank">http://zipperary.com/2013/05/30/hexo-guide-4/</a> “hexo系列教程：（四）hexo博客的优化技巧”</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/hexo/">hexo</a>, <a href="/tags/github/">github</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/2014/05/14/how-to-build-blog-with-github-pages-and-hexo/" data-title="使用github pages和hexo搭建个人博客" data-url="http://www.coderwoo.com/2014/05/14/how-to-build-blog-with-github-pages-and-hexo/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"coderwoo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:www.coderwoo.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/github/">github</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/记录/">记录</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 CoderWoo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
