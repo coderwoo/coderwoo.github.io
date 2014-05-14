@@ -21,6 +21,36 @@
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -50,24 +80,24 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-05-14T09:11:03.000Z"><a href="/2014/05/14/how-to-build-blog-with-github-pages-and-hexo/">5月 14 2014</a></time>
+        <time datetime="2014-05-14T14:45:27.000Z"><a href="/2014/05/14/zzu-7th-acm/">5月 14 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/05/14/how-to-build-blog-with-github-pages-and-hexo/">使用github pages和hexo搭建个人博客</a></h1>
+    <h1 class="title"><a href="/2014/05/14/zzu-7th-acm/">郑州大学第七届程序设计大赛不完全题解</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>本文详尽介绍了如何使用github pages和hexo搭建一个个人博客，包含域名的注册、DNS设置、github和hexo设置等的详细说明。希望能给有兴趣搭建个人博客的同学们提供帮助。<br>
+        <p>郑州大学第七届程序设计大赛部分题目的题解<br>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2014/05/14/how-to-build-blog-with-github-pages-and-hexo/#more" class="more-link">阅读全文</a>
+            <a href="/2014/05/14/zzu-7th-acm/#more" class="more-link">阅读全文</a>
           </div>
         
         
@@ -87,22 +117,25 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-05-13T16:54:45.000Z"><a href="/2014/05/14/my-first-post/">5月 14 2014</a></time>
+        <time datetime="2014-05-14T09:11:03.000Z"><a href="/2014/05/14/how-to-build-blog-with-github-pages-and-hexo/">5月 14 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/05/14/my-first-post/">My first post</a></h1>
+    <h1 class="title"><a href="/2014/05/14/how-to-build-blog-with-github-pages-and-hexo/">使用github pages和hexo搭建个人博客</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>我的第一篇博文</p>
-
+        <p>本文详尽介绍了如何使用github pages和hexo搭建一个个人博客，包含域名的注册、DNS设置、github和hexo设置等的详细说明。希望能给有兴趣搭建个人博客的同学们提供帮助。<br>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2014/05/14/how-to-build-blog-with-github-pages-and-hexo/#more" class="more-link">阅读全文</a>
+          </div>
         
         
       
@@ -170,11 +203,15 @@
   <h3 class="title">标签</h3>
   <ul class="entry">
   
+    <li><a href="/tags/ACM/">ACM</a><small>1</small></li>
+  
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>1</small></li>
+  
     <li><a href="/tags/github/">github</a><small>1</small></li>
   
     <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
   
-    <li><a href="/tags/记录/">记录</a><small>1</small></li>
+    <li><a href="/tags/zzu/">zzu</a><small>1</small></li>
   
   </ul>
 </div>

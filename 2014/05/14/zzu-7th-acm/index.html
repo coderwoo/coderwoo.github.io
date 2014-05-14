@@ -1,0 +1,687 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>郑州大学第七届程序设计大赛不完全题解 | CoderWoo&#39;s Blog</title>
+  <meta name="author" content="CoderWoo">
+  
+  <meta name="description" content="郑州大学第七届程序设计大赛部分题目的题解">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="郑州大学第七届程序设计大赛不完全题解"/>
+  <meta property="og:site_name" content="CoderWoo&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="CoderWoo&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">CoderWoo&#39;s Blog</a></h1>
+  <h2><a href="/">CARPE DIEM (to make merry while one can)</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">存档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-14T14:45:27.000Z"><a href="/2014/05/14/zzu-7th-acm/">5月 14 2014</a></time>
+      
+      
+  
+    <h1 class="title">郑州大学第七届程序设计大赛不完全题解</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>郑州大学第七届程序设计大赛部分题目的题解<br><a id="more"></a></p>
+<h1 id="A+B_Again!">A+B Again!</h1>
+<h3 id="Description">Description</h3>
+<p>大家一定都做过A+B吧，立刻AC吧。</p>
+<h3 id="Input">Input</h3>
+<p>多组输入：<br>每组输入一个字符串”A+B” 。（A，B是正整数，且A+B &lt; 231）</p>
+<h3 id="Output">Output</h3>
+<p>对每组输入，输出A+B的结果。</p>
+<h3 id="Sample_Input">Sample Input</h3>
+<p>1+2<br>3+4 </p>
+<h3 id="Sample_Output">Sample Output</h3>
+<p>3<br>7</p>
+<h3 id="Solution">Solution</h3>
+<p>略</p>
+<h3 id="Code">Code</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="keyword">int</span> main()
+{
+    <span class="keyword">int</span> a,b;
+    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d+%d"</span>, &a, &b) != EOF){
+        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a+b);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="大小关系">大小关系</h1>
+<h3 id="Description-1">Description</h3>
+<p>当我们知道一组大小关系之后，可判断所有关系是否都能成立，即关系间没有矛盾。<br>例如：A&lt;B, A&lt;C, B&lt;C  通过这组关系我们可以得到A&lt;B&lt;C ，所有关系都成立，没有矛盾。<br>若 A&lt;B, B&lt;C, C&lt;A  通过前两个关系我们得到 A&lt;B&lt;C ，这个关系与C&lt;A矛盾，所有关系不能同时成立。</p>
+<p>现在我们知道m个关系,请判断这m个关系是否能成立，成立输出“YES”，否则输出“NO”。</p>
+<h3 id="Input-1">Input</h3>
+<p>多组数据，每组数据如下：<br>第一行有两个字母m。 m代表m组关系(1&lt;=m&lt;=400)，接下来m行每行有一个关系，用两个不同的字母和一个符号表示。（输入保证字母在‘A’-‘Z’之间，关系符号只有 &gt; , &lt;）</p>
+<h3 id="Output-1">Output</h3>
+<p>对于每组数据输出“YES”或“NO”.</p>
+<h3 id="Sample_Input-1">Sample Input</h3>
+<p>3<br>A&lt;B<br>A&lt;C<br>B&lt;C<br>3<br>A&lt;B<br>B&lt;C<br>C&lt;A  </p>
+<h3 id="Sample_Output-1">Sample Output</h3>
+<p>YES<br>NO</p>
+<h3 id="Solution-1">Solution</h3>
+<p>首先，引入两个图论中的名次：入度，可简单理解为指向这个节点的点的个数；出度，可简单理解为这个点指向其他点的个数。如下图中，A的入度为0，出度为2，B的入度为1，出度为1，C的入度为2，出度为0  </p>
+<p>而对于下图：A、B、C的出度和入度都为1。这组关系中存在矛盾，通过比较可以得知，关系间没有矛盾的图必然存在入度为0的节点和出度为0的节点。  </p>
+<p>所以，我们可以在每次迭代中寻找入度为0的节点，如果不存在，则证明存在矛盾；如果存在，就将这个点从图中删掉，并更新这个点指向的其他点的入度。然后进入下一次迭代。</p>
+<h3 id="Code-1">Code</h3>
+<h2 id="略">略</h2>
+<h1 id="飞艇航拍">飞艇航拍</h1>
+<h3 id="Description-2">Description</h3>
+<p>　　　用飞艇进行空中拍照成本低，安全系数高，稳定性强，升空时间长，高度可以调节，准确度高。可用于影视、节目录制、企业资料和品牌推广、投资考察、城市规划与发展、新闻采集与事件报道、大型活动与赛事等领域。<br>　　　现在我们有一个飞艇，想要对我们的学校进行拍摄，假设，我们的学校是一个多边形，他用相邻的顶点集合表示（每两个相邻的点，表示多边形的一条边，起点和终点是最后一条边）。我们让飞艇只进行简单的直线飞行。为了便于处理，我们引入直角坐标系，飞艇飞行的路线垂直于X坐标轴。现在我们想知道，飞艇在这条直线上，能拍到学校的y方向的长度是多少。假设摄像机拍摄的宽度非常小。</p>
+<p>　　　如图：a中拍到的长度就是多边形截取的长度，而b中长度是在多边形内的两线段的和。</p>
+<h3 id="Input-2">Input</h3>
+<p>　　先给出测试数据组数T（T&lt;=20）<br>　　对于每组测试数据<br>　　第一行输入多变形顶点个数N(1 &lt;= N &lt;= 50)<br>　　接下来N行，每行2个整数x(0&lt;=x&lt;=100)，y(0&lt;=y&lt;=100)代表多边形的顶点坐标<br>　　最后是一个整数X(0&lt;=X&lt;=100)，代表飞艇飞行的路线</p>
+<h3 id="Output-2">Output</h3>
+<p>　　对于每组测试数据，求出飞艇拍下的学校y方向的长度，输出总长度的整数部分。每组输出各占一行。（注意：墙壁不算入长度）</p>
+<h3 id="Sample_Input-1">Sample Input</h3>
+<p>2<br>7<br>0 1<br>2 0<br>4 1<br>2 2<br>4 3<br>2 4<br>0 3<br>1<br>7<br>0 1<br>2 0<br>4 1<br>2 2<br>4 3<br>2 4<br>0 3<br>3  </p>
+<h3 id="Sample_Output-1">Sample Output</h3>
+<p>3<br>2</p>
+<h3 id="Solution-2">Solution</h3>
+<p>首先明确一点，一条直线穿过一个多边形，必然会产生偶数个交点（经过顶点的按照两个点算，与边重合的需根据不同的题意进行特判）。根据这点，我们将所有的交点，按照y方向进行标号，则0号与1号交点、$2i$号交点与$2i+1$号交点之间的距离需要被统计。我们将所有与这条直线交叉的边按照交叉点的$y$值排序，然后按上述规则统计一下即可。  </p>
+<h3 id="Code-2">Code</h3>
+<h2 id="略-1">略</h2>
+<h1 id="单调数">单调数</h1>
+<h3 id="Description-3">Description</h3>
+<p>对于一个正整数x，如果x的每一位都不大于它右边一位上的数字，那么就称x是递增数，例如：112，4557，18899，111。<br>类似的，如果x的每一位都不小于它右边一位上的数字，那么就称x是递减数，例如：986，6331，77311，111。<br>递增数和递减数统称单调数。（111既是递增数，也是递减数，所以111肯定是单调数）</p>
+<h3 id="Input-3">Input</h3>
+<p>有多组输入。<br>每组输入一个数n。（n&lt;=100)</p>
+<h3 id="Output-3">Output</h3>
+<p>对于每组输入数据中的n，输出小于10n的单调数个数。</p>
+<h3 id="Sample_Input-1">Sample Input</h3>
+<p>6<br>10 </p>
+<h3 id="Sample_Output-1">Sample Output</h3>
+<p>12951<br>277032</p>
+<h3 id="Solution-3">Solution</h3>
+<p>设$f(n)$为长度为n的单调数个数，则 有 $$ans=\sum_{i=1}^{n} f(i)$$</p>
+<p>另设 $g(n, k),(0\ll k \ll 9)$ 为长度为n，第一个数为k的非递增单调数个数。则有$$g(n,k)=\sum_{i=0}^{k}g(n-1, i)$$</p>
+<p>对于$f(n)$有 $$f(n) = 2\sum_{i=1}^{9}g(n,i)-\sum_{i=1}^{9}g(n-1,i)-9$$</p>
+<p>$\sum_{i=1}^{9}g(n,i)$ 计算最高位非0的非递增单调数个数</p>
+<p>$2*$将所有的非递增单调数反转后得到非递减单调数</p>
+<p>$-\sum_{i=1}^{9}g(n-1,i)$减去反转后的以0为最高位的非递减单调数</p>
+<p>$-9$减去类似11…1，22…2，…，99…9重复计算的数</p>
+<h3 id="Code-3">Code</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;string.h&gt;</span>
+<span class="preprocessor">#include &lt;math.h&gt;</span>
+<span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ull;
+ull a[<span class="number">105</span>][<span class="number">10</span>], b[<span class="number">105</span>];
+<span class="keyword">int</span> n;
+ull ans;
+ull g(<span class="keyword">int</span> n, <span class="keyword">int</span> k);
+ull f(<span class="keyword">int</span> n)
+{
+    <span class="keyword">if</span>(b[n] != <span class="number">0</span>)
+        <span class="keyword">return</span> b[n];
+    ull ret = <span class="number">0</span>;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">9</span>; i++){
+        ret += g(n, i);
+    }
+    ret = ret * <span class="number">2</span>;
+    <span class="keyword">if</span>(n &gt; <span class="number">1</span>){
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">9</span>; i++)
+            ret -= g(n-<span class="number">1</span>, i);
+    }
+    ret -= <span class="number">9</span>;
+    b[n] = ret;
+    <span class="keyword">return</span> b[n];
+}
+ull g(<span class="keyword">int</span> n, <span class="keyword">int</span> k)
+{
+    <span class="keyword">if</span>(a[n][k] != <span class="number">0</span>)
+        <span class="keyword">return</span> a[n][k];
+    ull ret = <span class="number">0</span>;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=k; i++)
+        ret += g(n-<span class="number">1</span>, i);
+    a[n][k] = ret;
+    <span class="keyword">return</span> a[n][k];
+}
+<span class="keyword">int</span> main()
+{
+    <span class="built_in">memset</span>(a, <span class="number">0</span>, <span class="keyword">sizeof</span>(a));
+    <span class="built_in">memset</span>(b, <span class="number">0</span>, <span class="keyword">sizeof</span>(b));
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=<span class="number">9</span>; i++){
+        a[<span class="number">1</span>][i] = <span class="number">1</span>;
+    }
+    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &n) != EOF){
+        ans = <span class="number">0</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)
+            ans += f(i);
+        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="OS_Job_Scheduling">OS Job Scheduling</h1>
+<h3 id="Description-4">Description</h3>
+<p>OS(Operating System) is to help user solve the problem, such as run job(task).A multitasking OS is one that can simultaneously interleave execution of more than one job .It means that, at the same time, more than one job waiting for being processed by the OS. But now that the OS is only one processor, a processor can only execute one job at the same time. So the OS will be decided at a time which one job be processed. Each job has three property: time(the time submit to the system), priority (Perform high priority) and length(the running time of job). In order to improve the throughput(the number of unit time processing jobs) about OS, there are several basic algorithms to solve this problem. They were explained in the following: </p>
+<p>FCFS: first come first service<br>The jobs are executed on first come, first serve basis. It is easy to understand and implement, but it is poor in performance as average wait time is high.</p>
+<p>SJF: Shortest job first.<br>It is the best approach to minimize waiting time, but impossible to implement. The processor should know in advance how much time process will take.</p>
+<p>PBS: Priority based scheduling<br>Each process is assigned a priority. Process with highest priority is to be executed first and so on. Processes with same priority are executed on first come first serve basis.</p>
+<p>Today,  Chris’s teacher gave him a homework: given n jobs and the time of each job submission to the system, use the method of FCFS(The first submit is executed first),to decide the order of the operation is performed.</p>
+<p>Chris get confused with this problem thoroughly, so he ask you for help. Please help him to solve this problem.</p>
+<h3 id="Input-4">Input</h3>
+<p>There are multiple input data groups, for each input data group:The first line of input an integer n (1≤n≤1000),the number of the job should to be handled. The next line contains n space-separated integer numbers. The i-th number ti (1≤i≤1000, 1≤ti≤1000)denotes the time of i-th  job be submitted. It is essential that ti≠tj(1≤i , j≤1000 &amp;&amp; i≠j )</p>
+<h3 id="Output-4">Output</h3>
+<p>For each input data group, print n space-separated integer numbers, the i-th number represents the i-th run jobs.</p>
+<h3 id="Sample_Input-1">Sample Input</h3>
+<p>5<br>1 2 3 4 5<br>5<br>5 4 3 2 1<br>5<br>3 2 4 1 5  </p>
+<h3 id="Sample_Output-1">Sample Output</h3>
+<p>1 2 3 4 5<br>5 4 3 2 1<br>4 2 1 3 5  </p>
+<h3 id="Solution-4">Solution</h3>
+<p>略</p>
+<h3 id="Code-4">Code</h3>
+<h2 id="略-2">略</h2>
+<h1 id="ARM立即数寻址">ARM立即数寻址</h1>
+<h3 id="Description-5">Description</h3>
+<p>在ARM处理器立即数寻址方式中，立即数是由一个8bit的常数（大于0，小于等于0xff）循环右移（需先扩展为32位）偶数bit(0,2,4,…,30)得到的，所以类似0x101,0x102,0xFF1,0xFF04,0x8000007F等都是无效的立即数,而像0xFF,0x3FC,0xC0000003F,0x104,0xFF0,0xFF00,0xf000000f等都是有效的立即数。<br>现在给你一个32bit的正整数,请你判断这个数是否是有效的立即数。<br>（0x12345678循环右移4位变为0x81234567。）</p>
+<h3 id="Input-5">Input</h3>
+<p>一个正整数T （T&lt;= 1000000)，表示有T组测试数据<br>每一组测试数据包含一个32位的十六进制数n （0&lt;= n &lt;= 0xffffffff)</p>
+<h3 id="Output-5">Output</h3>
+<p>共T行。对于每个n，输出占一行，如果n是有效的立即数输出”YES”,否则输出”NO”。</p>
+<h3 id="Sample_Input-1">Sample Input</h3>
+<p>3<br>0xff<br>0xFF<br>0xF0F  </p>
+<h3 id="Sample_Output-1">Sample Output</h3>
+<p>YES<br>YES<br>NO  </p>
+<h3 id="Solution-5">Solution</h3>
+<p>将$0xff$循环偶次移位，在与n进行与操作，结果等于n则输出<code>YES</code>，否则输出<code>NO</code></p>
+<h3 id="Code-5">Code</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#define uint unsigned int</span>
+uint rotate_left(uint x, uint n)
+{
+	<span class="keyword">return</span> (x&lt;&lt;n)|(x&gt;&gt;(<span class="number">32</span>-n));
+}
+<span class="keyword">int</span> table[<span class="number">16</span>];
+<span class="keyword">int</span> main()
+{
+	<span class="keyword">for</span>(uint i=<span class="number">0</span>; i&lt;<span class="number">16</span>; i++)
+		table[i] = rotate_left((uint)<span class="number">0xff</span>,i*<span class="number">2</span>);
+	uint x;
+    <span class="keyword">int</span> t;
+    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &t);
+    <span class="keyword">while</span>(t--)
+    {
+	    <span class="built_in">scanf</span>(<span class="string">"%x"</span>,&x);
+		<span class="keyword">int</span> flag = <span class="number">0</span>;
+		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">16</span>; i++)
+			<span class="keyword">if</span>((table[i]&x)==x){
+				flag = <span class="number">1</span>;
+				<span class="keyword">break</span>;
+			}
+		<span class="built_in">printf</span>(<span class="string">"%s\n"</span>,flag?<span class="string">"YES"</span>:<span class="string">"NO"</span>);
+	}
+	<span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
+
+
+<h1 id="最后一个非零数">最后一个非零数</h1>
+<h3 id="Description-6">Description</h3>
+<p>对于给定正整数n，将 n! 转换为7进制后，输出这串数字的最后一个非零项。<br>其中n!=1<em>2</em>3…<em>n。<br>若n=7， n!=1</em>2<em>3…</em>7=5040（十进制）=20460（七进制） 。对于20460这串数字最后一个非零项为6,<br>所以输出6。  </p>
+<h3 id="Input-6">Input</h3>
+<p>多组输入数据，每组数据给出一个整数n。（ 1&lt;=n&lt;=1000,000,000。）</p>
+<h3 id="Output-6">Output</h3>
+<p>对于每一个n，输出答案。</p>
+<h3 id="Sample_Input-1">Sample Input</h3>
+<p>7<br>10</p>
+<h3 id="Sample_Output-1">Sample Output</h3>
+<p>6<br>1</p>
+<h3 id="Solution-6">Solution</h3>
+<p><strong>以下推导过程省略取摸过程！</strong><br>$$\prod_{i=1}^{7}i=1*\prod_{i=1}^{6}i$$</p>
+<p>$$\prod_{i=8}^{14}i=2*\prod_{i=1}^{6}i$$</p>
+<p>$$\cdots$$</p>
+<p>$$\prod_{i=36}^{42}i=6*\prod_{i=1}^{6}i$$</p>
+<p>$$\prod_{i=43}^{49}i=7*\prod_{i=1}^{6}i$$</p>
+<p>从上边的几个式子，我们可以得到：<br>$$\prod_{i=1}^{49}i = \prod_{i=1}^{6}i*\prod_{i=1}^{6}i$$</p>
+<p>进一步推导可得：</p>
+<p>$$\prod_{i=1}^{7^3}i=\big( \prod_{i=1}^{6}i  \big)^3$$</p>
+<p>又$ \prod_{i=1}^{6}i=6$，故有：</p>
+<p>$$\prod_{i=1}^{7^2}i=6^2=1$$</p>
+<p>$$\prod_{i=1}^{7^3}i=6^3=6$$</p>
+<p>由此可得：</p>
+<p>\begin{equation}<br>g(k)=\prod_{i=1}^{7^k}i=6^k=<br>\begin{cases}<br>    6 &amp;\mbox{if k is odd} \\<br>    1 &amp;\mbox{if k is even}<br>\end{cases}<br>\end{equation}</p>
+<p>那么假设n是$7^p$的$q$倍，则$n!=q * g(p)$，由此可得对于任意n，有$$n!=\prod_{i=11}^{1}a_{i}g(i)$$<br>其中$$n=\sum_{i=1}^{10}a_{i}7^i $$</p>
+<h3 id="Code-6">Code</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="keyword">int</span> a[<span class="number">7</span>], b[<span class="number">12</span>], c[<span class="number">12</span>], d[<span class="number">12</span>], e[<span class="number">12</span>];
+<span class="keyword">int</span> main()
+{
+    <span class="keyword">int</span> T, n, ans;
+    a[<span class="number">0</span>] = <span class="number">1</span>;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;<span class="number">7</span>; i++){
+        a[i] = (a[i-<span class="number">1</span>]*i)%<span class="number">7</span>;
+    }
+    
+    b[<span class="number">0</span>] = <span class="number">1</span>;
+    c[<span class="number">0</span>] = <span class="number">1</span>;
+    d[<span class="number">0</span>] = <span class="number">1</span>;
+    e[<span class="number">0</span>] = <span class="number">1</span>;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">10</span>; i++){
+        b[i] = b[i-<span class="number">1</span>] * <span class="number">7</span>;
+        d[i] = (d[i-<span class="number">1</span>] * <span class="number">6</span>)%<span class="number">7</span>;
+        e[i] = (e[i-<span class="number">1</span>] * <span class="number">1</span>)%<span class="number">7</span>;
+        c[i] = i&<span class="number">1</span>?<span class="number">6</span>:<span class="number">1</span>;
+    }
+    
+    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &n) != EOF){
+        <span class="keyword">int</span> ans = <span class="number">1</span>, k;
+        <span class="keyword">int</span> *p;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">10</span>; i&gt;=<span class="number">1</span>; i--){
+            <span class="keyword">if</span>(n &gt;= b[i]){
+                k = n/b[i];
+                
+                <span class="keyword">if</span>(i&<span class="number">1</span>) p = d;
+                <span class="keyword">else</span>    p = e;
+                
+                ans = (ans * p[k] * a[k]) % <span class="number">7</span>;
+                n %= b[i];
+            }
+        }
+        ans = (ans * a[n]) % <span class="number">7</span>;
+        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="cgangee的游戏">cgangee的游戏</h1>
+<h3 id="Description-7">Description</h3>
+<p>cgangee想毁灭地球。但在此之前，他想玩下面这个游戏。<br>他有一个被分成了很多单元格的长方形棋盘。每个格子不是黑色就是白色。这个游戏有很多回合，每一回合可以选择一行（注意只能选择一行，而不是一列），然后重新把该行黑色格子涂成白色，把白色的格子涂成黑色。<br>cgangee想在棋盘上得到最大的白色正方形，这个正方形的边必须平行与棋盘的边。这个白色正方形可以是一个更大白色区域的一部分。找到一个游戏步骤来得到这个最大白色正方形，然后给出这个正方形的面积。</p>
+<h3 id="Input-7">Input</h3>
+<p>一个正整数T （T&lt;= 10)，表示有T组测试数据 。<br>每组测试数据，给定n和m（1&lt;=n,m&lt;=50）代表棋盘的行数和列数。接下来会有n行数字串，每行有m个数字，每个数字是0或1，0代表白色，1代表黑色。</p>
+<h3 id="Output-7">Output</h3>
+<p>共T行，每行为最大白色正方形的面积。</p>
+<h3 id="Sample_Input-1">Sample Input</h3>
+<p>1<br>3  4<br>0111<br>0111<br>1111  </p>
+<h3 id="Sample_Output-1">Sample Output</h3>
+<p>9</p>
+<h3 id="Solution-7">Solution</h3>
+<p>对于如图所示的矩形，我们使用<code>a[N][M]</code>存储棋盘的颜色。因为对于我们可以对任意一行进行无限制的反转，所以我们完全不用关注每个格子具体的颜色，所以我们使用<code>b[N][M]</code>存储在在第N行中第M列的元素之前具有相同颜色的连续格数，如上图中b[5][5] = 3；之后向上去更新计算可以得到的最大面积。</p>
+<h3 id="Code-7">Code</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;string.h&gt;</span>
+<span class="preprocessor">#include &lt;algorithm&gt;</span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="keyword">int</span> n, m;
+<span class="keyword">char</span> a[<span class="number">55</span>][<span class="number">55</span>];
+<span class="keyword">int</span> b[<span class="number">55</span>][<span class="number">55</span>], c[<span class="number">55</span>][<span class="number">55</span>];
+<span class="keyword">int</span> main()
+{
+    <span class="keyword">int</span> T;
+    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &T);
+    <span class="keyword">while</span>(T--){
+        <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &n, &m);
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)
+        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;m; j++)
+            <span class="built_in">scanf</span>(<span class="string">" %c"</span>, &a[i][j]);
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++){
+            b[i][<span class="number">0</span>] = <span class="number">1</span>;
+            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;m; j++)
+                b[i][j] = (a[i][j] == a[i][j-<span class="number">1</span>])?
+                                    b[i][j-<span class="number">1</span>]+<span class="number">1</span>:<span class="number">1</span>;
+        }
+        <span class="keyword">int</span> mr = <span class="number">0</span>, tmp;<span class="comment">//min row</span>
+        <span class="keyword">int</span> ans = <span class="number">0</span>;
+        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++){
+            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;m; j++){
+                c[i][j] = <span class="number">1</span>;
+                mr = b[i][j];
+                <span class="keyword">for</span>(<span class="keyword">int</span> k=i-<span class="number">1</span>; k&gt;=<span class="number">0</span>; k--){
+                    mr = min(mr, b[k][j]);
+                    <span class="keyword">if</span>(mr &gt;= i-k+<span class="number">1</span>){
+                        tmp = min(mr, i-k+<span class="number">1</span>);
+                        c[i][j] = max(c[i][j], tmp*tmp);
+                    }<span class="keyword">else</span>
+                        <span class="keyword">break</span>;
+                }
+                ans = max(ans, c[i][j]);
+            }
+        }
+        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/ACM/">ACM</a>, <a href="/tags/Algorithm/">Algorithm</a>, <a href="/tags/zzu/">zzu</a>
+  </div>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/2014/05/14/zzu-7th-acm/" data-title="郑州大学第七届程序设计大赛不完全题解" data-url="http://www.coderwoo.com/2014/05/14/zzu-7th-acm/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"coderwoo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:www.coderwoo.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ACM/">ACM</a><small>1</small></li>
+  
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>1</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
+  
+    <li><a href="/tags/zzu/">zzu</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 CoderWoo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

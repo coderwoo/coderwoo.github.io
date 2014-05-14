@@ -23,6 +23,36 @@
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </head>
 
 
@@ -278,26 +308,26 @@ hexo deploy
 19
 20
 21
-</pre></td><td class="code"><pre><span class="variable">@echo</span> off
-set predir=<span class="variable">%CD</span>%
-pushd <span class="variable">%BLOG</span>%
-echo <span class="string">"Current WordDir :"</span> <span class="variable">%CD</span>%
-<span class="keyword">if</span> NOT <span class="string">"<span class="variable">%3</span>"</span> == <span class="string">""</span> <span class="keyword">goto</span> threeparams
-<span class="keyword">if</span> NOT <span class="string">"<span class="variable">%2</span>"</span> == <span class="string">""</span> <span class="keyword">goto</span> twoparams
-<span class="keyword">if</span> NOT <span class="string">"<span class="variable">%1</span>"</span> == <span class="string">""</span> <span class="keyword">goto</span> oneparams
+</pre></td><td class="code"><pre>@echo <span class="keyword">off</span>
+<span class="keyword">set</span> predir=%CD%
+pushd E:\blog\hexo
+echo <span class="string">"Current WordDir :"</span> %CD%
+<span class="keyword">if</span> <span class="keyword">NOT</span> <span class="string">"%~3"</span> == <span class="string">""</span> <span class="keyword">goto</span> threeparams
+<span class="keyword">if</span> <span class="keyword">NOT</span> <span class="string">"%~2"</span> == <span class="string">""</span> <span class="keyword">goto</span> twoparams
+<span class="keyword">if</span> <span class="keyword">NOT</span> <span class="string">"%~1"</span> == <span class="string">""</span> <span class="keyword">goto</span> oneparams
 <span class="keyword">goto</span> noparams
-:threeparams
-	hexo <span class="variable">%1</span> <span class="variable">%2</span> <span class="variable">%3</span>
-	<span class="keyword">goto</span> end
+:threeoarams
+	hexo %~<span class="number">1</span> %~<span class="number">2</span> <span class="string">"%~3"</span>
+	<span class="keyword">goto</span> <span class="keyword">end</span>
 :twoparams
-	hexo <span class="variable">%1</span> <span class="variable">%2</span>
-	<span class="keyword">goto</span> end
+	hexo %~<span class="number">1</span> <span class="string">"%~2"</span>
+	<span class="keyword">goto</span> <span class="keyword">end</span>
 :oneparams
-	hexo <span class="variable">%1</span>
-	<span class="keyword">goto</span> end
+	hexo %~<span class="number">1</span>
+	<span class="keyword">goto</span> <span class="keyword">end</span>
 :noparams
-:end
-	pushd <span class="variable">%predir</span>%
+:<span class="keyword">end</span>
+	pushd %predir%
 	echo <span class="string">"DONE"</span>
 </pre></td></tr></table></figure>
 
@@ -395,11 +425,15 @@ var duoshuoQuery = {short_name:"coderwoo"};
   <h3 class="title">标签</h3>
   <ul class="entry">
   
+    <li><a href="/tags/ACM/">ACM</a><small>1</small></li>
+  
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>1</small></li>
+  
     <li><a href="/tags/github/">github</a><small>1</small></li>
   
     <li><a href="/tags/hexo/">hexo</a><small>1</small></li>
   
-    <li><a href="/tags/记录/">记录</a><small>1</small></li>
+    <li><a href="/tags/zzu/">zzu</a><small>1</small></li>
   
   </ul>
 </div>
